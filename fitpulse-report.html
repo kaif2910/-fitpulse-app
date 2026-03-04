@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitPulse Project Report</title>
+    <style>
+        body { background-color: #f0f0f0; font-family: "Times New Roman", Times, serif; margin: 0; padding: 0; }
+        .page { width: 210mm; min-height: 297mm; padding: 25mm; margin: 10mm auto; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); box-sizing: border-box; }
+        .title-section { text-align: center; margin-bottom: 60px; border-bottom: 3px double #000; padding-bottom: 20px; }
+        h1 { font-size: 26pt; text-transform: uppercase; margin: 0; }
+        .subtitle { font-size: 16pt; font-weight: bold; color: #f97316; margin-top: 10px; }
+        h2 { font-size: 18pt; border-bottom: 1px solid #000; padding-bottom: 5px; margin-top: 40px; text-transform: uppercase; }
+        h3 { font-size: 14pt; font-weight: bold; margin-top: 25px; }
+        p, li { font-size: 12pt; line-height: 1.6; text-align: justify; }
+        .code-box { background-color: #f8f8f8; border: 1px solid #ccc; padding: 15px; font-family: "Courier New", monospace; font-size: 10pt; white-space: pre-wrap; margin: 10px 0; border-left: 5px solid #f97316; }
+        .output-placeholder { width: 100%; height: 350px; border: 2px dashed #f97316; background: #fff7ed; display: flex; align-items: center; justify-content: center; color: #f97316; font-weight: bold; font-size: 13pt; margin: 25px 0; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="title-section">
+            <h1>TECHNICAL PROJECT REPORT</h1>
+            <div class="subtitle">FitPulse: Daily Workout Tracker</div>
+            <p>Angular 18 | Fitness Management System</p>
+        </div>
+
+        <h2>1. Project Aim</h2>
+        <p>The <strong>FitPulse Tracker</strong> is designed to help users log their daily gym activities. It uses Angular's reactive nature to track sets, reps, and workout duration. The project demonstrates how technical concepts can be applied to health and fitness monitoring.</p>
+
+        <h2>2. Technical Features</h2>
+        <ul>
+            <li><strong>Two-Way Binding:</strong> Used for entering workout names and reps.</li>
+            <li><strong>Custom Directive:</strong> <code>IntensityHighlight</code> adds a dynamic glow based on workout stress level.</li>
+            <li><strong>Custom Pipe:</strong> <code>WorkoutTime</code> formats training duration from seconds to minutes.</li>
+        </ul>
+
+        <h2>3. Source Code Implementation</h2>
+
+        <h3>3.1 Workout Logic (workout.ts)</h3>
+        <div class="code-box">
+export class WorkoutComponent {
+  workoutName: string = '';
+  durationSeconds: number = 3600; // 1 hour
+  workouts = [
+    { name: 'Pushups', reps: 50, intensity: 'High' },
+    { name: 'Yoga', reps: 1, intensity: 'Low' }
+  ];
+
+  addWorkout() {
+    this.workouts.push({ name: this.workoutName, reps: 0, intensity: 'Medium' });
+  }
+}</div>
+
+        <h3>3.2 Custom Timer Pipe (workout-time.pipe.ts)</h3>
+        <div class="code-box">
+@Pipe({ name: 'workoutTime', standalone: true })
+export class WorkoutTimePipe implements PipeTransform {
+  transform(seconds: number): string {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+  }
+}</div>
+
+        <h3>3.3 Template View (workout.html)</h3>
+        <div class="code-box">
+&lt;div class="fitness-dashboard"&gt;
+  &lt;h1&gt;Total Time: {{ durationSeconds | workoutTime }}&lt;/h1&gt;
+  &lt;input [(ngModel)]="workoutName" placeholder="New Exercise"&gt;
+  
+  &lt;div class="exercise-card" *ngFor="let w of workouts" appIntensity&gt;
+    &lt;h3&gt;{{ w.name | uppercase }}&lt;/h3&gt;
+    &lt;p&gt;Target: {{ w.reps }} reps&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+
+        <h2>4. Visual Project Output</h2>
+        <div class="output-placeholder">[ ATTACH SCREENSHOT: MAIN WORKOUT DASHBOARD ]</div>
+        <div class="output-placeholder">[ ATTACH SCREENSHOT: INTENSITY HOVER EFFECT ]</div>
+    </div>
+</body>
+</html>

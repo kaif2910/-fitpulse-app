@@ -1,0 +1,25 @@
+<div class="fit-container">
+  <header>
+    <h1>⚡ {{ title }}</h1>
+    <p>Session Time: <strong>{{ totalTime | workoutTime }}</strong></p>
+  </header>
+
+  <section class="form-card">
+    <input [(ngModel)]="newExercise" placeholder="Enter Exercise Name...">
+    <button (click)="logWorkout()">Log Exercise</button>
+  </section>
+
+  <div class="workout-grid">
+    <div *ngFor="let w of workouts" class="workout-card" appIntensity [intensity]="w.intensity">
+      <div class="card-header">
+        <h3>{{ w.name | uppercase }}</h3>
+        <span class="badge">{{ w.intensity }} Intensity</span>
+      </div>
+      
+      <p>Target: {{ w.reps }} reps</p>
+      <p>Date: {{ w.date | date:'shortTime' }}</p>
+      
+      <button class="rep-btn" (click)="increaseReps(w)">+5 Reps</button>
+    </div>
+  </div>
+</div>

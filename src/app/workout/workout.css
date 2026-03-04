@@ -1,0 +1,83 @@
+.fit-container {
+  padding: 15px; /* Less padding on mobile */
+  background-color: #f8fafc;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+header {
+  text-align: center;
+  background: #1e293b;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+header h1 {
+  font-size: 1.5rem;
+}
+
+.form-card {
+  display: flex;
+  flex-direction: column; /* Stack on mobile */
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 600px) {
+  .form-card { flex-direction: row; align-items: center; justify-content: center; }
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  width: 100%; /* Full width for mobile */
+}
+
+@media (min-width: 600px) {
+  input { width: 300px; }
+}
+
+button {
+  padding: 12px 24px;
+  background: #f97316;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%; /* Full width for mobile */
+}
+
+@media (min-width: 600px) {
+  button { width: auto; }
+}
+
+.workout-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 column on mobile */
+  gap: 15px;
+}
+
+@media (min-width: 640px) {
+  .workout-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .workout-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.workout-card {
+  background: white;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.rep-btn {
+  margin-top: 15px;
+  background: #334155;
+  width: 100%;
+}
